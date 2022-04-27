@@ -11,13 +11,13 @@ module.exports = {
   context: __dirname,
   devtool: 'source-map',
   module: {
-    loaders: [
+    rules: [
       {
         test: /jsx?$/,
         exclude: /(node_modules|bower_components)/,
         loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015', 'stage-2'],
+        options: {
+          presets: ['@babel/react'],
         }
       }
     ]
