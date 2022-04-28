@@ -1,29 +1,23 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import thunks from 'redux-thunk';
+import {compose} from 'redux';
+import {configureStore} from '@reduxjs/toolkit';
 
-import minions from './minions';
-import meetings from './meetings';
-import ideas from './ideas';
-import selectedMinion from './selectedMinion';
-import selectedIdea from './selectedIdea';
-import work from './work';
-import appState from './appState';
+import minionsReducer from './minions';
+import meetingsReducer from './meetings';
+import ideasReducer from './ideas';
+import selectedMinionReducer from './selectedMinion';
+import selectedIdeaReducer from './selectedIdea';
+import workReducer from './work';
+import appStateReducer from './appState';
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-
-const store = createStore(
-  combineReducers({
-    minions,
-    meetings,
-    ideas,
-    selectedMinion,
-    selectedIdea,
-    work,
-    appState,
-  }),
-  composeEnhancers(
-    applyMiddleware(thunks)
-  )
-)
-
-export default store;
+export const store = configureStore({
+        reducer: {
+            minions: minionsReducer,
+            meetings: meetingsReducer,
+            ideas: ideasReducer,
+            selectedMinion: selectedMinionReducer,
+            selectedIdea: selectedIdeaReducer,
+            work: workReducer,
+            appState: appStateReducer,
+        }
+    }
+);

@@ -263,7 +263,7 @@ const deleteAllFromDatabase = (modelType) => {
   return model.data;
 }
 
-module.exports = {
+export {
   createMeeting,
   getAllFromDatabase,
   getFromDatabaseById,

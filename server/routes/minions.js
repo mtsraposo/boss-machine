@@ -1,6 +1,7 @@
+import {getAllFromDatabase, getFromDatabaseById} from "../db";
+
 const express = require('express');
-const {getAllFromDatabase} = require("../db");
-const minionsRouter = express.router();
+const minionsRouter = express.Router({mergeParams:true});
 
 minionsRouter.get('/', (req, res, next) => {
     const allMinions = getAllFromDatabase('minions');
@@ -11,4 +12,14 @@ minionsRouter.get('/', (req, res, next) => {
     }
 });
 
-module.exports = minionsRouter;
+minionsRouter.get('/:minionId', (req, res, next) => {
+    const minionId = req.params.minionId;
+    const minion = getFromDatabaseById('minions', minionId);
+    if (minion) {
+        res.send(minion);
+    } else {
+        res.status(404).send(`Minion with id ${minionId} not found`);
+    }
+});
+
+export {minionsRouter};
