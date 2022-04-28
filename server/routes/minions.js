@@ -4,7 +4,6 @@ const express = require('express');
 const minionsRouter = express.Router({mergeParams:true});
 
 minionsRouter.get('/', (req, res, next) => {
-    console.log('Getting all minions');
     const allMinions = getAllFromDatabase('minions');
     if (allMinions) {
         res.send(allMinions);

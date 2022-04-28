@@ -13,7 +13,7 @@ export const createMinionThunk = minion => dispatch => {
     axios.post('http://localhost:4001/api/minions', minion)
         .then(res => res.data)
         .then(createdMinion => {
-            dispatch(addMinion(createdMinion));
+            dispatch(createMinion(createdMinion));
             navigate(`/minions/${createdMinion.id}`);
         })
         .catch(console.error.bind(console));

@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
+import {Outlet} from "react-router";
 
 import axios from "axios";
 import {store} from "../store/index";
@@ -9,6 +10,7 @@ import {setIdeas} from "../store/ideas";
 import {setMeetings} from "../store/meetings";
 
 export const App = (props) => {
+
     useEffect(()=> {
         const fetchApiData = async () => {
             console.log('Mounted app');
@@ -23,17 +25,16 @@ export const App = (props) => {
             store.dispatch(setMinions(minions));
             store.dispatch(setIdeas(ideas));
             store.dispatch(setMeetings(meetings));
+            console.log('Done dispatching...');
         }
         fetchApiData();
     });
-
-    console.log('Finished fetching data');
 
     return (
         <div>
             <Heading/>
             <div id="content">
-                {props.children}
+                <Outlet />
             </div>
         </div>
     );

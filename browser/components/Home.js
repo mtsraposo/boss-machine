@@ -27,7 +27,7 @@ const Home = (props) => {
                     </div>
                 </Link>
             </div>
-            <AllMeetings/>
+            {/*<AllMeetings/>*/}
             <div id="meetings-cancel" className="button" onClick={props.cancelMeetings}>
                 Cancel All
             </div>

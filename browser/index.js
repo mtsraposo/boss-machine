@@ -19,9 +19,9 @@ import {cancelMeetings} from "./store/meetings";
 import {setIdeaEditing, setMinionEditing, resetEditingState} from './store/appState';
 
 import {App} from './components/App';
-// import AllMinions from './components/AllMinions';
-// import Home from './components/Home';
-// import AllIdeas from './components/AllIdeas';
+import AllMinions from './components/AllMinions';
+import Home from './components/Home';
+import AllIdeas from './components/AllIdeas';
 // import Idea from './components/Idea';
 // import Minion from './components/Minion';
 
@@ -77,9 +77,9 @@ import {App} from './components/App';
 //     ));
 // }
 //
-// const allIdeasEnter = () => {
-//     store.dispatch(resetEditingState())
-// }
+const allIdeasEnter = () => {
+    store.dispatch(resetEditingState())
+}
 
 const container = document.getElementById('app');
 const root = createRoot(container);
@@ -88,8 +88,8 @@ root.render(
     <Provider store={store}>
         <Router>
             <Routes>
-                <Route path="/" element={<App />}>
-                    {/*<Route index element={<Home cancelMeetings={cancelMeetings}/>}/>*/}
+                <Route path="/" element={<App/>}>
+                    <Route index element={<Home/>}/>
                     {/*<Route path="/minions" element={<AllMinions/>}/>*/}
                     {/*<Route path="/minions/new" onEnter={newMinionEnter} element={<Minion/>}/>*/}
                     {/*<Route path="/minions/:id" onEnter={singleMinionEnter} element={<Minion/>}/>*/}
