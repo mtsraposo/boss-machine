@@ -1,4 +1,4 @@
-import {getAllFromDatabase, getFromDatabaseById} from "../db";
+const {getAllFromDatabase, getFromDatabaseById} = require("../db");
 
 const express = require('express');
 const ideasRouter = express.Router({mergeParams: true});
@@ -22,4 +22,4 @@ ideasRouter.get('/:ideaId', (req, res, next) => {
     }
 });
 
-export {ideasRouter};
+module.exports = ideasRouter;

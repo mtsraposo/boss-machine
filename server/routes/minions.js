@@ -1,9 +1,10 @@
-import {getAllFromDatabase, getFromDatabaseById} from "../db";
+const {getAllFromDatabase, getFromDatabaseById} = require("../db");
 
 const express = require('express');
 const minionsRouter = express.Router({mergeParams:true});
 
 minionsRouter.get('/', (req, res, next) => {
+    console.log('Getting all minions');
     const allMinions = getAllFromDatabase('minions');
     if (allMinions) {
         res.send(allMinions);
@@ -22,4 +23,4 @@ minionsRouter.get('/:minionId', (req, res, next) => {
     }
 });
 
-export {minionsRouter};
+module.exports = minionsRouter;

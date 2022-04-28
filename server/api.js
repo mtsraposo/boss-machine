@@ -1,4 +1,4 @@
-import {minionsRouter} from './routes/minions';
+const minionsRouter = require('./routes/minions');
 const ideasRouter = require('./routes/ideas');
 const meetingsRouter = require('./routes/meetings');
 
@@ -9,4 +9,4 @@ apiRouter.use('/minions', minionsRouter);
 apiRouter.use('/ideas', ideasRouter);
 apiRouter.use('/meetings', meetingsRouter);
 
-export {apiRouter};
+module.exports = apiRouter;

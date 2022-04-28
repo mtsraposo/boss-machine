@@ -10,11 +10,11 @@ const AllMinions = props => {
     return (
       <div className="minion-grid" key={minion.id}>
         <Link to={`/minions/${minion.id}`} >
-          <img className="button minion-thumbnail" src="public/img/minion.svg" alt="minion" />
+          <img className="button minion-thumbnail" src="../../public/img/minion.svg" alt="minion" />
           <p>{name}</p>
           <p>ID #{minion.id}</p>
         </Link>
-        <img onClick={() => props.deleteMinion(minion.id)}  className="button x-button" src="public/img/x_button.svg" alt="" />
+        <img onClick={() => props.deleteMinion(minion.id)}  className="button x-button" src="../../public/img/x_button.svg" alt="" />
       </div>
     )
   });
@@ -27,14 +27,14 @@ const AllMinions = props => {
           { minions }
           <div id="add-minion-button-grid" className="minion-grid">
             <Link to="/minions/new">
-              <img id="add-minion-button" className="button" src="public/img/add_button.svg" alt="" />
+              <img id="add-minion-button" className="button" src="../../public/img/add_button.svg" alt="" />
             </Link>
           </div>
         </div>
       </div>
       <div className="button back-button">
         <Link to="/">
-          <img className="button" src="public/img/arrow.svg" />
+          <img className="button" src="../../public/img/arrow.svg" />
         </Link>
       </div>
     </div>

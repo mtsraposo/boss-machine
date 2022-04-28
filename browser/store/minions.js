@@ -3,32 +3,7 @@ import axios from 'axios';
 import {useNavigate} from 'react-router'
 import {setSelectedMinion} from './selectedMinion';
 
-const SET_MINIONS = 'SET_MINIONS';
-const CREATE_MINION = 'CREATE_MINION';
-const UPDATE_MINION = 'UPDATE_MINION';
-
-// Actions
-
-export const setMinions = minions => {
-    return {
-        type: SET_MINIONS,
-        minions,
-    }
-}
-
-export const addMinion = minion => {
-    return {
-        type: CREATE_MINION,
-        minion,
-    }
-}
-
-export const updateMinion = minion => {
-    return {
-        type: UPDATE_MINION,
-        minion,
-    }
-}
+import {createSlice} from "@reduxjs/toolkit";
 
 // Thunks
 
@@ -69,21 +44,29 @@ export const deleteMinionThunk = minionId => dispatch => {
 
 // Reducer
 
-export const initial = [];
+export const initialState = [];
 
-export default (initialState = initial, action) => {
-    switch (action.type) {
-        case CREATE_MINION:
-            return [...initialState, action.minion];
-        case SET_MINIONS:
-            return action.minions;
-        case UPDATE_MINION:
-            const index = initialState.findIndex(el => el.id === action.minion.id);
-            if (index === -1) {
-                return initialState;
-            }
-            return [...initialState.slice(0, index), action.minion, ...initialState.slice(index + 1)];
-        default:
-            return initialState;
+const minionSlice = createSlice({
+        name: 'minions',
+        initialState,
+        reducers: {
+            setMinions: (state, action) => {
+                state = action.payload;
+            },
+            createMinion: (state, action) => {
+                state.push(action.payload);
+            },
+            updateMinion: (state, action) => {
+                const index = state.findIndex(el => el.id === action.payload.id);
+                if (index === -1) {
+                    state = initialState;
+                } else {
+                    state[index] = action.payload;
+                }
+            },
+        }
     }
-}
+);
+
+export const {setMinions, createMinion, updateMinion} = minionSlice.actions;
+export default minionSlice.reducer;

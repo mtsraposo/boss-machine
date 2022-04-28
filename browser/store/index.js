@@ -1,4 +1,3 @@
-import {compose} from 'redux';
 import {configureStore} from '@reduxjs/toolkit';
 
 import minionsReducer from './minions';
@@ -12,12 +11,12 @@ import appStateReducer from './appState';
 export const store = configureStore({
         reducer: {
             minions: minionsReducer,
-            meetings: meetingsReducer,
-            ideas: ideasReducer,
-            selectedMinion: selectedMinionReducer,
-            selectedIdea: selectedIdeaReducer,
-            work: workReducer,
-            appState: appStateReducer,
+            // meetings: meetingsReducer,
+            // ideas: ideasReducer,
+            // selectedMinion: selectedMinionReducer,
+            // selectedIdea: selectedIdeaReducer,
+            // work: workReducer,
+            // appState: appStateReducer,
         }
     }
 );

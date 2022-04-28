@@ -1,5 +1,5 @@
 const express = require('express');
-import {getAllFromDatabase} from "../db";
+const {getAllFromDatabase} = require("../db");
 const meetingsRouter = express.Router({mergeParams:true});
 
 meetingsRouter.get('/', (req, res, next) => {
@@ -11,4 +11,4 @@ meetingsRouter.get('/', (req, res, next) => {
     }
 });
 
-export {meetingsRouter};
+module.exports = meetingsRouter;
