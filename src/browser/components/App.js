@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Outlet} from "react-router";
 
 import axios from "axios";
-import {store} from "../store/index";
+import {store} from "../store";
 
 import {Heading} from './Heading';
 import {setMinions} from "../store/minions";

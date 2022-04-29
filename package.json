@@ -2,12 +2,14 @@
   "name": "build-apis-boss-machine",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
-    "test": "cross-env PORT=8000 mocha --watch",
-    "start-dev": "webpack -w & nodemon --watch server.js --watch server/",
-    "start": "nodemon --watch server.js --watch server/",
-    "postinstall": "webpack"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "pre-deploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "Codecademy",
   "license": "ISC",
@@ -20,12 +22,14 @@
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "express": "^4.18.0",
+    "gh-pages": "^3.2.3",
     "mocha": "^9.2.2",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "npm-check-updates": "^12.5.9",
     "path": "^0.12.7",
     "react-router-dom": "^6.3.0",
+    "react-scripts": "^5.0.1",
     "supertest": "^6.2.3"
   },
   "devDependencies": {
@@ -44,5 +48,17 @@
     "redux-thunk": "^2.4.1",
     "webpack": "^5.72.0",
     "webpack-cli": "^4.9.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

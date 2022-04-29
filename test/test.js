@@ -1,10 +1,10 @@
 const expect = require('chai').expect;
 const request = require('supertest');
 
-const app = require('../server');
+const app = require('../src/server');
 
 describe('/api/minions routes', function() {
-  let fakeDb = require('../server/db.js');
+  let fakeDb = require('../src/server/db.js');
 
   describe('GET /api/minions', function() {
 
@@ -241,7 +241,7 @@ describe('/api/minions routes', function() {
 });
 
 describe('/api/ideas routes', function() {
-  let fakeDb = require('../server/db.js');
+  let fakeDb = require('../src/server/db.js');
 
   describe('GET /api/ideas', function() {
 
@@ -479,7 +479,7 @@ describe('/api/ideas routes', function() {
 
 describe('checkMillionDollarIdea middleware', function() {
 
-  const checkMillionDollarIdea = require('../server/checkMillionDollarIdea');
+  const checkMillionDollarIdea = require('../src/server/checkMillionDollarIdea');
 
   let req;
   let response;
@@ -579,7 +579,7 @@ describe('checkMillionDollarIdea middleware', function() {
 });
 
 describe('/api/meetings routes', function() {
-  let fakeDb = require('../server/db.js');
+  let fakeDb = require('../src/server/db.js');
   
   describe('GET /api/meetings', function() {
     
@@ -688,7 +688,7 @@ describe('/api/meetings routes', function() {
 
 xdescribe('BONUS: /api/minions/:minionId/work routes', function() {
 
-  let fakeDb = require('../server/db.js').db;
+  let fakeDb = require('../src/server/db.js').db;
   
     describe('GET /api/minions/:minionId/work', function() {
   

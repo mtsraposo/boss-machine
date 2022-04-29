@@ -12,7 +12,7 @@ const Home = (props) => {
             <div id="launch-buttons">
                 <Link to="/minions">
                     <div id="minions-launch" className="button launch-button">
-                        <img className="button launch-icon" src="../../public/img/minion_icon_home.svg" alt=""/>
+                        <img className="button launch-icon" src="../../../public/img/minion_icon_home.svg" alt=""/>
                         <div className="button label launch-label">
                             MINIONS.exe
                         </div>
@@ -20,7 +20,7 @@ const Home = (props) => {
                 </Link>
                 <Link to="/ideas">
                     <div id="ideas-launch" className="button launch-button">
-                        <img className="button launch-icon" src="../../public/img/minion_icon_money.svg" alt=""/>
+                        <img className="button launch-icon" src="../../../public/img/minion_icon_money.svg" alt=""/>
                         <div className="button label launch-label">
                             MILLION $ IDEAS.exe
                         </div>
