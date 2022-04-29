@@ -1,5 +1,7 @@
 # Boss Machine
 
+## STATUS: WORK IN PROGRESS
+
 ## Project Overview
 
 This project is part of CodeCademy's Full Stack Engineering career path. A React/Redux front-end and a boilerplate server are provided for completion. As the libraries and frameworks were outdated, I decided to update the whole project to use the latest recommended implementation standards.
