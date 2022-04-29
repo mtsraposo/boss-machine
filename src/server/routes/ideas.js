@@ -1,4 +1,4 @@
-const {getAllFromDatabase, getFromDatabaseById} = require("../db");
+const {getAllFromDatabase, getFromDatabaseById} = require("../data/db");
 
 const express = require('express');
 const ideasRouter = express.Router({mergeParams: true});

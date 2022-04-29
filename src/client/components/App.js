@@ -9,7 +9,9 @@ import {setMinions} from "../store/minions";
 import {setIdeas} from "../store/ideas";
 import {setMeetings} from "../store/meetings";
 
-export const App = (props) => {
+import "../css/style.css";
+
+export const App = () => {
 
     useEffect(()=> {
         const fetchApiData = async () => {

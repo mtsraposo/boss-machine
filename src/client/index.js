@@ -7,21 +7,21 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import axios from 'axios';
 
 import {Provider} from 'react-redux';
-import {store} from './browser/store';
+import {store} from './store';
 
-import {setMinions} from './browser/store/minions';
-import {setSelectedMinion} from './browser/store/selectedMinion';
-import {setIdeas} from './browser/store/ideas';
-import {setSelectedIdea} from './browser/store/selectedIdea';
-import {setWork} from './browser/store/work';
-import {setMeetings} from './browser/store/meetings';
-import {cancelMeetings} from "./browser/store/meetings";
-import {setIdeaEditing, setMinionEditing, resetEditingState} from './browser/store/appState';
+import {setMinions} from './store/minions';
+import {setSelectedMinion} from './store/selectedMinion';
+import {setIdeas} from './store/ideas';
+import {setSelectedIdea} from './store/selectedIdea';
+import {setWork} from './store/work';
+import {setMeetings} from './store/meetings';
+import {cancelMeetings} from "./store/meetings";
+import {setIdeaEditing, setMinionEditing, resetEditingState} from './store/appState';
 
-import {App} from './browser/components/App';
-import AllMinions from './browser/components/AllMinions';
-import Home from './browser/components/Home';
-import AllIdeas from './browser/components/AllIdeas';
+import {App} from './components/App';
+import AllMinions from './components/AllMinions';
+import Home from './components/Home';
+import AllIdeas from './components/AllIdeas';
 // import Idea from './components/Idea';
 // import Minion from './components/Minion';
 

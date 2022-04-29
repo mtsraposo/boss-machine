@@ -1,5 +1,5 @@
 const express = require('express');
-const {getAllFromDatabase} = require("../db");
+const {getAllFromDatabase} = require("../data/db");
 const meetingsRouter = express.Router({mergeParams:true});
 
 meetingsRouter.get('/', (req, res, next) => {

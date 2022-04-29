@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import logo from "../assets/img/logo.svg";
 
 export const Heading = () => {
     return (
@@ -7,7 +8,7 @@ export const Heading = () => {
 
             <div id="logo">
                 <Link to="/">
-                    <img id="logo-img" className="button" src="../../../public/img/logo.svg" alt="logo"/>
+                    <img id="logo-img" className="button" src={logo} alt="logo"/>
                 </Link>
             </div>
             <div id="title">

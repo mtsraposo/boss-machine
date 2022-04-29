@@ -1,6 +1,6 @@
-const minionsRouter = require('./routes/minions');
-const ideasRouter = require('./routes/ideas');
-const meetingsRouter = require('./routes/meetings');
+const minionsRouter = require('./minions');
+const ideasRouter = require('./ideas');
+const meetingsRouter = require('./meetings');
 
 const express = require('express');
 const apiRouter = express.Router();

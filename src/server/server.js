@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 // Mount your existing apiRouter below at the '/api' path.
 app.use(express.static("./"));
 
-const apiRouter = require('./server/api');
+const apiRouter = require('./routes/api');
 app.use('/api', apiRouter);
 
 // This conditional is here for testing purposes:
