@@ -4,3 +4,4 @@ public/js/bundle.js
 public/js/bundle.js.map
 package-lock.json
 .idea/**
+.env.development
