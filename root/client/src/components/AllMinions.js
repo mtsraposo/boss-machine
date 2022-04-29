@@ -10,7 +10,7 @@ const AllMinions = props => {
         return (
             <div className="minion-grid" key={minion.id}>
                 <Link to={`/minions/${minion.id}`}>
-                    <img className="button minion-thumbnail" src="../assets/img/minion.svg" alt="minion"/>
+                    <img className="button minion-thumbnail" src="../assets/minion.svg" alt="minion"/>
                     <p>{name}</p>
                     <p>ID #{minion.id}</p>
                 </Link>

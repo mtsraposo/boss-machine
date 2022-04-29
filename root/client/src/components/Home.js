@@ -6,8 +6,8 @@ import {cancelMeetingsThunk} from '../store/meetings';
 
 import AllMeetings from './AllMeetings';
 
-import minionsIcon from "../assets/img/minion_icon_home.svg";
-import ideasIcon from "../assets/img/minion_icon_money.svg";
+import minionsIcon from "../assets/minion_icon_home.svg";
+import ideasIcon from "../assets/minion_icon_money.svg";
 
 const Home = (props) => {
     return (

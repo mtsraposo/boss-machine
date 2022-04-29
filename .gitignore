@@ -4,6 +4,6 @@ root/client/public/js/bundle.js
 root/client/public/js/bundle.js.map
 **/package-lock.json
 **/.idea
-.env.development
+root/client/.env.development
 **/build
 **/*.iml
