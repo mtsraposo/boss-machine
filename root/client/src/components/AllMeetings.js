@@ -16,6 +16,7 @@ import {
 const AllMeetings = (props) => {
 
     console.log('Mounted AllMeetings');
+    console.log(props);
 
     useEffect(() => {
         const addMeeting = () => {
@@ -64,12 +65,10 @@ const AllMeetings = (props) => {
     );
 }
 
-const mapState = (state) => {
-    return {
-        meetings: state.meetings,
-        timeoutTime: state.timeoutTime
-    }
-};
+const mapState = (state) => ({
+    meetings: state.meetings.meetings,
+    timeoutTime: state.timeoutTime
+});
 
 const mapDispatch = dispatch => ({
     createMeeting: () => {

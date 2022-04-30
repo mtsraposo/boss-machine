@@ -5,9 +5,9 @@ import axios from 'axios';
 export const createMeetingThunk = () => async dispatch => {
     try {
         const res = await axios.post('http://localhost:4001/api/meetings');
-        const createdMeeting = res.data;
-        console.log(createdMeeting);
-        dispatch(createMeeting(createdMeeting));
+        const createdMeetings = res.data;
+        console.log(createdMeetings);
+        dispatch(createMeeting(createdMeetings));
     } catch (e) {
         console.error(e);
     }
@@ -32,29 +32,36 @@ const meetingsSlice = createSlice({
     initialState,
     reducers: {
         createMeeting: (state, action) => {
-            console.log('Before createMeeting: ', state.meetings);
-            state.meetings.append(action.payload);
-            state.meetings.sort((a, b) => {
+            let newMeetings = [action.payload, ...state.meetings];
+            newMeetings.sort((a, b) => {
                 return new Date(a.date).getTime() - new Date(b.date).getTime();
             });
-            console.log('After createMeeting: ', state.meetings);
+            return {
+                ...state,
+                meetings: newMeetings
+            };
         },
         cancelMeetings: (state, action) => {
-            state.meetings = [];
+            return {
+                ...state,
+                meetings: []
+            };
         },
         setMeetings: (state, action) => {
-            state.meetings = action.payload;
+            return {
+                ...state,
+                meetings: action.payload
+            };
         },
         updateTimeout: (state, action) => {
-            state.timeoutId = action.payload;
-            state.timeoutTime = 10000 + 3000;
+            return {
+                ...state,
+                timeoutId: action.payload,
+                timeoutTime: 10000 + 3000
+            };
         }
     }
-})
-
-export const selectMeetingsTimeout = (state) => state.timeoutTime;
-export const selectMeetingsTimeoutId = (state) => state.timeoutId;
-export const selectMeetings = (state) => state.meetings;
+});
 
 export const {createMeeting, cancelMeetings, setMeetings, updateTimeout} = meetingsSlice.actions;
 
