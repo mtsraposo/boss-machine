@@ -60,13 +60,13 @@ const minionSlice = createSlice({
                 const index = state.findIndex(el => el.id === action.payload.id);
                 if (index === -1) {
                     state = initialState;
-                } else {
-                    state[index] = action.payload;
                 }
+                state[index] = action.payload;
             },
         }
     }
 );
 
 export const {setMinions, createMinion, updateMinion} = minionSlice.actions;
+
 export default minionSlice.reducer;

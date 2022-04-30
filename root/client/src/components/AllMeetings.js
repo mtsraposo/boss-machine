@@ -1,71 +1,83 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component, useEffect} from 'react';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import Meeting from './Meeting';
 
-import { createMeetingThunk } from '../store/meetings';
+import {
+    createMeetingThunk,
+    createMeeting,
+    cancelMeetings,
+    setMeetings,
+    selectMeetings,
+    selectMeetingsTimeout,
+    selectMeetingsTimeoutId, updateTimeout
+} from '../store/meetings';
 
-class AllMeetings extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      timeoutId: null,
-      timeoutTime: 5000,
-    }
-  }
+const AllMeetings = (props) => {
 
-  componentDidMount() {
-    let timeoutId = null;
-    const addMeeting = () => {
-      this.props.createMeeting();
-      timeoutId = window.setTimeout(addMeeting, this.state.timeoutTime);
-      this.setState({
-        timeoutId,
-        timeoutTime: Math.random() * 10000 + 3000,
-      });
-    }
-    addMeeting();
-  }
+    console.log('Mounted AllMeetings');
 
-  componentWillUnmount() {
-    window.clearTimeout(this.state.timeoutId);
-  }
+    useEffect(() => {
+        const addMeeting = () => {
+            props.createMeeting();
 
-  render() {
-    const allMeetings = this.props.meetings.map(meeting => {
-      return <Meeting key={meeting.date} day={meeting.day} time={meeting.time} note={meeting.note} />
+            const timeoutId = window.setTimeout(addMeeting, Number(props.timeoutTime));
+
+            props.updateTimeout(timeoutId);
+
+            return timeoutId;
+        }
+
+        const timeoutId = addMeeting();
+
+        // Unmount
+        return () => {
+            window.clearTimeout(timeoutId);
+        }
+
     });
-  
+
+    const allMeetings = props.meetings.map(meeting => {
+        return <Meeting key={meeting.date} day={meeting.day} time={meeting.time} note={meeting.note}/>
+    });
+
     return (
-      <div id="meetings-landing">
-        <div className="label meetings-label">
-          Meetings
+        <div id="meetings-landing">
+            <div className="label meetings-label">
+                Meetings
+            </div>
+            <div id="meetings-table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th id="th-time">Time</th>
+                        <th id="th-location">Date</th>
+                        <th id="th-note">Note</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {allMeetings}
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div id="meetings-table">
-          <table>
-            <thead>
-              <tr>
-                <th id="th-time">Time</th>
-                <th id="th-location">Date</th>
-                <th id="th-note">Note</th>
-              </tr>
-            </thead>
-            <tbody>
-              { allMeetings }
-            </tbody>
-          </table>
-        </div>
-      </div>
-    )
-  }
+    );
 }
 
-const mapState = ({ meetings }) => ({ meetings });
+const mapState = (state) => {
+    return {
+        meetings: state.meetings,
+        timeoutTime: state.timeoutTime
+    }
+};
 
 const mapDispatch = dispatch => ({
-  createMeeting: () => {
-    dispatch(createMeetingThunk());
-  }
+    createMeeting: () => {
+        dispatch(createMeetingThunk());
+    },
+    updateTimeout: (timeout) => {
+        dispatch(updateTimeout(timeout));
+    }
 });
 
 export default connect(mapState, mapDispatch)(AllMeetings);

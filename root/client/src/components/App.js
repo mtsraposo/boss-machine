@@ -26,8 +26,11 @@ export const App = () => {
             store.dispatch(setIdeas(ideas));
             store.dispatch(setMeetings(meetings));
             console.log('Done dispatching...');
+
+            return true;
         }
-        fetchApiData();
+        const fetched = fetchApiData();
+        console.log(fetched);
     });
 
     return (

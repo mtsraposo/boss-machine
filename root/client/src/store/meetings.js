@@ -1,61 +1,61 @@
+import {createSlice} from '@reduxjs/toolkit';
+
 import axios from 'axios';
 
-const CREATE_MEETING = 'CREATE_MEETING';
-const CANCEL_MEETINGS = 'CANCEL_MEETINGS';
-const SET_MEETINGS = 'SET_MEETINGS';
-
-export const setMeetings = meetings => {
-  return {
-    type: SET_MEETINGS,
-    meetings,
-  }
-}
-
-export const createMeeting = meeting => {
-  return {
-    type: CREATE_MEETING,
-    meeting,
-  }
-}
-
-export const cancelMeetings = () => {
-  return {
-    type: CANCEL_MEETINGS
-  }
-}
-
-export const createMeetingThunk = () => dispatch => {
-  axios.post('http://localhost:4001/api/meetings')
-  .then(res => res.data)
-  .then(createdMeeting => {
-    dispatch(createMeeting(createdMeeting));
-  })
-  .catch(console.error.bind(console));
+export const createMeetingThunk = () => async dispatch => {
+    try {
+        const res = await axios.post('http://localhost:4001/api/meetings');
+        const createdMeeting = res.data;
+        console.log(createdMeeting);
+        dispatch(createMeeting(createdMeeting));
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 export const cancelMeetingsThunk = () => dispatch => {
-  axios.delete('http://localhost:4001/api/meetings')
-  .then(() => {
-    dispatch(cancelMeetings());
-  })
-  .catch(console.error.bind(console));
+    axios.delete('http://localhost:4001/api/meetings')
+        .then(() => {
+            dispatch(cancelMeetings());
+        })
+        .catch(console.error.bind(console));
 }
 
-const initial = [];
+const initialState = {
+    timeoutId: null,
+    timeoutTime: 5000,
+    meetings: [],
+};
 
-export default (initialState = initial, action) => {
-  switch(action.type) {
-    case CREATE_MEETING:
-      const newMeetings = [action.meeting, ...initialState];
-      newMeetings.sort((a, b) => { 
-        return new Date(a.date).getTime() - new Date(b.date).getTime();
-      });
-      return newMeetings;
-    case CANCEL_MEETINGS:
-      return [];
-    case SET_MEETINGS:
-      return action.meetings;
-    default:
-      return initialState;
-  }
-}
+const meetingsSlice = createSlice({
+    name: 'meetings',
+    initialState,
+    reducers: {
+        createMeeting: (state, action) => {
+            console.log('Before createMeeting: ', state.meetings);
+            state.meetings.append(action.payload);
+            state.meetings.sort((a, b) => {
+                return new Date(a.date).getTime() - new Date(b.date).getTime();
+            });
+            console.log('After createMeeting: ', state.meetings);
+        },
+        cancelMeetings: (state, action) => {
+            state.meetings = [];
+        },
+        setMeetings: (state, action) => {
+            state.meetings = action.payload;
+        },
+        updateTimeout: (state, action) => {
+            state.timeoutId = action.payload;
+            state.timeoutTime = 10000 + 3000;
+        }
+    }
+})
+
+export const selectMeetingsTimeout = (state) => state.timeoutTime;
+export const selectMeetingsTimeoutId = (state) => state.timeoutId;
+export const selectMeetings = (state) => state.meetings;
+
+export const {createMeeting, cancelMeetings, setMeetings, updateTimeout} = meetingsSlice.actions;
+
+export default meetingsSlice.reducer;

@@ -1,6 +1,5 @@
 'use strict';
 
-const webpack = require('webpack'); // eslint-disable-line no-unused-vars
 const path = require('path');
 
 module.exports = {
@@ -9,6 +8,16 @@ module.exports = {
         path: path.resolve(__dirname, 'public/js'),
         filename: 'bundle.js',
         publicPath: "public/js"
+    },
+    resolve: {
+        fallback: {"crypto": false,
+        "buffer": false,
+        "url": false,
+        "stream": false,
+        "querystring": false,
+        "http": false,
+        "zlib": false,
+        }
     },
     mode: "development",
     context: __dirname,

@@ -803,7 +803,7 @@ var getBody = __webpack_require__(/*! raw-body */ "./node_modules/raw-body/index
 var iconv = __webpack_require__(/*! iconv-lite */ "./node_modules/iconv-lite/lib/index.js")
 var onFinished = __webpack_require__(/*! on-finished */ "./node_modules/on-finished/index.js")
 var unpipe = __webpack_require__(/*! unpipe */ "./node_modules/unpipe/index.js")
-var zlib = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'zlib'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+var zlib = __webpack_require__(/*! zlib */ "?b625")
 
 /**
  * Module exports.
@@ -1718,7 +1718,7 @@ function parser (name) {
       mod = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js")
       break
     case 'querystring':
-      mod = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'querystring'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+      mod = __webpack_require__(/*! querystring */ "?d4f9")
       break
   }
 
@@ -3090,7 +3090,7 @@ function ContentDisposition (type, parameters) {
 
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
-var buffer = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'buffer'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+var buffer = __webpack_require__(/*! buffer */ "?4a03")
 var Buffer = buffer.Buffer
 
 // alternative to using Object.keys for old browsers
@@ -3400,7 +3400,7 @@ function ContentType (type) {
  * Module dependencies.
  */
 
-var crypto = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'crypto'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var crypto = __webpack_require__(/*! crypto */ "?1c38");
 
 /**
  * Sign the given `val` with `secret`.
@@ -4091,8 +4091,8 @@ function wrapproperty (obj, prop, message) {
 
 var EventEmitter = (__webpack_require__(/*! events */ "./node_modules/events/events.js").EventEmitter)
 var ReadStream = Object(function webpackMissingModule() { var e = new Error("Cannot find module 'fs'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())
-var Stream = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'stream'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
-var Zlib = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'zlib'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+var Stream = __webpack_require__(/*! stream */ "?8aaa")
+var Zlib = __webpack_require__(/*! zlib */ "?6be0")
 
 /**
  * Module exports.
@@ -4581,7 +4581,7 @@ module.exports = etag
  * @private
  */
 
-var crypto = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'crypto'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+var crypto = __webpack_require__(/*! crypto */ "?2c44")
 var Stats = Object(function webpackMissingModule() { var e = new Error("Cannot find module 'fs'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())
 
 /**
@@ -5255,7 +5255,7 @@ var middleware = __webpack_require__(/*! ./middleware/init */ "./node_modules/ex
 var query = __webpack_require__(/*! ./middleware/query */ "./node_modules/express/lib/middleware/query.js");
 var debug = __webpack_require__(/*! debug */ "./node_modules/express/node_modules/debug/src/browser.js")('express:application');
 var View = __webpack_require__(/*! ./view */ "./node_modules/express/lib/view.js");
-var http = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'http'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var http = __webpack_require__(/*! http */ "?53c1");
 var compileETag = (__webpack_require__(/*! ./utils */ "./node_modules/express/lib/utils.js").compileETag);
 var compileQueryParser = (__webpack_require__(/*! ./utils */ "./node_modules/express/lib/utils.js").compileQueryParser);
 var compileTrust = (__webpack_require__(/*! ./utils */ "./node_modules/express/lib/utils.js").compileTrust);
@@ -6163,7 +6163,7 @@ var accepts = __webpack_require__(/*! accepts */ "./node_modules/accepts/index.j
 var deprecate = __webpack_require__(/*! depd */ "./node_modules/depd/lib/browser/index.js")('express');
 var isIP = Object(function webpackMissingModule() { var e = new Error("Cannot find module 'net'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 var typeis = __webpack_require__(/*! type-is */ "./node_modules/type-is/index.js");
-var http = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'http'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var http = __webpack_require__(/*! http */ "?53c1");
 var fresh = __webpack_require__(/*! fresh */ "./node_modules/fresh/index.js");
 var parseRange = __webpack_require__(/*! range-parser */ "./node_modules/range-parser/index.js");
 var parse = __webpack_require__(/*! parseurl */ "./node_modules/parseurl/index.js");
@@ -6700,7 +6700,7 @@ var createError = __webpack_require__(/*! http-errors */ "./node_modules/http-er
 var deprecate = __webpack_require__(/*! depd */ "./node_modules/depd/lib/browser/index.js")('express');
 var encodeUrl = __webpack_require__(/*! encodeurl */ "./node_modules/encodeurl/index.js");
 var escapeHtml = __webpack_require__(/*! escape-html */ "./node_modules/escape-html/index.js");
-var http = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'http'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var http = __webpack_require__(/*! http */ "?53c1");
 var isAbsolute = (__webpack_require__(/*! ./utils */ "./node_modules/express/lib/utils.js").isAbsolute);
 var onFinished = __webpack_require__(/*! on-finished */ "./node_modules/on-finished/index.js");
 var path = __webpack_require__(/*! path */ "./node_modules/path/path.js");
@@ -8997,7 +8997,7 @@ var mime = (__webpack_require__(/*! send */ "./node_modules/send/index.js").mime
 var etag = __webpack_require__(/*! etag */ "./node_modules/etag/index.js");
 var proxyaddr = __webpack_require__(/*! proxy-addr */ "./node_modules/proxy-addr/index.js");
 var qs = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
-var querystring = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'querystring'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+var querystring = __webpack_require__(/*! querystring */ "?5418");
 
 /**
  * Return strong ETag for `body`.
@@ -10070,7 +10070,7 @@ function plural(ms, n, name) {
 
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
-var buffer = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'buffer'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+var buffer = __webpack_require__(/*! buffer */ "?66cb")
 var Buffer = buffer.Buffer
 
 // alternative to using Object.keys for old browsers
@@ -166652,7 +166652,7 @@ function wrap (fn) {
  * @private
  */
 
-var url = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'url'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+var url = __webpack_require__(/*! url */ "?7993")
 var parse = url.parse
 var Url = url.Url
 
@@ -169361,7 +169361,7 @@ function wrap (fn) {
 
 
 
-var buffer = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'buffer'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+var buffer = __webpack_require__(/*! buffer */ "?407e")
 var Buffer = buffer.Buffer
 
 var safer = {}
@@ -169474,7 +169474,7 @@ var onFinished = __webpack_require__(/*! on-finished */ "./node_modules/on-finis
 var parseRange = __webpack_require__(/*! range-parser */ "./node_modules/range-parser/index.js")
 var path = __webpack_require__(/*! path */ "./node_modules/path/path.js")
 var statuses = __webpack_require__(/*! statuses */ "./node_modules/statuses/index.js")
-var Stream = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'stream'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+var Stream = __webpack_require__(/*! stream */ "?6612")
 var util = __webpack_require__(/*! util */ "./node_modules/util/util.js")
 
 /**
@@ -171360,7 +171360,7 @@ var escapeHtml = __webpack_require__(/*! escape-html */ "./node_modules/escape-h
 var parseUrl = __webpack_require__(/*! parseurl */ "./node_modules/parseurl/index.js")
 var resolve = (__webpack_require__(/*! path */ "./node_modules/path/path.js").resolve)
 var send = __webpack_require__(/*! send */ "./node_modules/send/index.js")
-var url = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'url'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+var url = __webpack_require__(/*! url */ "?2a3a")
 
 /**
  * Module exports.
@@ -172188,7 +172188,7 @@ function simpleEnd(buf) {
 
 /*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* eslint-disable node/no-deprecated-api */
-var buffer = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'buffer'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
+var buffer = __webpack_require__(/*! buffer */ "?2075")
 var Buffer = buffer.Buffer
 
 // alternative to using Object.keys for old browsers
@@ -173561,6 +173561,7 @@ const meetingsRouter = express.Router({mergeParams:true});
 meetingsRouter.get('/', (req, res, next) => {
     const allMeetings = getAllFromDatabase('meetings');
     if (allMeetings) {
+        console.log('Sending meetings');
         res.send(allMeetings);
     } else {
         res.status(404).send('No meetings found');
@@ -173618,8 +173619,6 @@ const app = express();
 const cors = __webpack_require__(/*! cors */ "./node_modules/cors/lib/index.js");
 const bodyParser = __webpack_require__(/*! body-parser */ "./node_modules/body-parser/index.js");
 
-module.exports = app;
-
 /* Do not change the following line! It is required for testing and allowing
 *  the frontend application to interact as planned with the api server
 */
@@ -173644,6 +173643,108 @@ if (!module.parent) {
         console.log(`Server listening on port ${PORT}`);
     })
 }
+
+module.exports = app;
+
+/***/ }),
+
+/***/ "?d4f9":
+/*!*****************************!*\
+  !*** querystring (ignored) ***!
+  \*****************************/
+/***/ (function() {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "?b625":
+/*!**********************!*\
+  !*** zlib (ignored) ***!
+  \**********************/
+/***/ (function() {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "?4a03":
+/*!************************!*\
+  !*** buffer (ignored) ***!
+  \************************/
+/***/ (function() {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "?1c38":
+/*!************************!*\
+  !*** crypto (ignored) ***!
+  \************************/
+/***/ (function() {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "?8aaa":
+/*!************************!*\
+  !*** stream (ignored) ***!
+  \************************/
+/***/ (function() {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "?6be0":
+/*!**********************!*\
+  !*** zlib (ignored) ***!
+  \**********************/
+/***/ (function() {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "?2c44":
+/*!************************!*\
+  !*** crypto (ignored) ***!
+  \************************/
+/***/ (function() {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "?53c1":
+/*!**********************!*\
+  !*** http (ignored) ***!
+  \**********************/
+/***/ (function() {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "?5418":
+/*!*****************************!*\
+  !*** querystring (ignored) ***!
+  \*****************************/
+/***/ (function() {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "?66cb":
+/*!************************!*\
+  !*** buffer (ignored) ***!
+  \************************/
+/***/ (function() {
+
+/* (ignored) */
 
 /***/ }),
 
@@ -173681,6 +173782,56 @@ if (!module.parent) {
 /*!********************************!*\
   !*** ./util.inspect (ignored) ***!
   \********************************/
+/***/ (function() {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "?7993":
+/*!*********************!*\
+  !*** url (ignored) ***!
+  \*********************/
+/***/ (function() {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "?407e":
+/*!************************!*\
+  !*** buffer (ignored) ***!
+  \************************/
+/***/ (function() {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "?6612":
+/*!************************!*\
+  !*** stream (ignored) ***!
+  \************************/
+/***/ (function() {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "?2a3a":
+/*!*********************!*\
+  !*** url (ignored) ***!
+  \*********************/
+/***/ (function() {
+
+/* (ignored) */
+
+/***/ }),
+
+/***/ "?2075":
+/*!************************!*\
+  !*** buffer (ignored) ***!
+  \************************/
 /***/ (function() {
 
 /* (ignored) */

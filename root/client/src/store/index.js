@@ -11,7 +11,7 @@ import appStateReducer from './appState';
 export const store = configureStore({
         reducer: {
             minions: minionsReducer,
-            // meetings: meetingsReducer,
+            meetings: meetingsReducer,
             // ideas: ideasReducer,
             // selectedMinion: selectedMinionReducer,
             // selectedIdea: selectedIdeaReducer,
