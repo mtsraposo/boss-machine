@@ -57,7 +57,7 @@ const meetingsSlice = createSlice({
             return {
                 ...state,
                 timeoutId: action.payload,
-                timeoutTime: 10000 + 3000
+                timeoutTime: 60000
             };
         }
     }

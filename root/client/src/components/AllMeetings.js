@@ -2,13 +2,7 @@ import React, {Component, useEffect} from 'react';
 import {connect, useDispatch, useSelector} from 'react-redux';
 import Meeting from './Meeting';
 
-import {
-    createMeetingThunk,
-    createMeeting,
-    cancelMeetings,
-    setMeetings,
-    updateTimeout
-} from '../store/meetings';
+import {createMeetingThunk, updateTimeout} from '../store/meetings';
 
 
 const AllMeetings = (props) => {
