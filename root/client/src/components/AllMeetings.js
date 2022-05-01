@@ -7,36 +7,27 @@ import {
     createMeeting,
     cancelMeetings,
     setMeetings,
-    selectMeetings,
-    selectMeetingsTimeout,
-    selectMeetingsTimeoutId, updateTimeout
+    updateTimeout
 } from '../store/meetings';
 
 
 const AllMeetings = (props) => {
 
-    console.log('Mounted AllMeetings');
-    console.log(props);
-
     useEffect(() => {
         const addMeeting = () => {
             props.createMeeting();
-
             const timeoutId = window.setTimeout(addMeeting, Number(props.timeoutTime));
-
             props.updateTimeout(timeoutId);
-
-            return timeoutId;
         }
 
-        const timeoutId = addMeeting();
+        addMeeting();
 
         // Unmount
         return () => {
-            window.clearTimeout(timeoutId);
+            window.clearTimeout(props.timeoutId);
         }
 
-    });
+    }, []);
 
     const allMeetings = props.meetings.map(meeting => {
         return <Meeting key={meeting.date} day={meeting.day} time={meeting.time} note={meeting.note}/>
@@ -65,9 +56,10 @@ const AllMeetings = (props) => {
     );
 }
 
-const mapState = (state) => ({
-    meetings: state.meetings.meetings,
-    timeoutTime: state.timeoutTime
+const mapState = (storeReducer) => ({
+    meetings: storeReducer.meetings.meetings,
+    timeoutId: storeReducer.meetings.timeoutId,
+    timeoutTime: storeReducer.meetings.timeoutTime
 });
 
 const mapDispatch = dispatch => ({

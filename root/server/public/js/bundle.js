@@ -173523,9 +173523,9 @@ module.exports = apiRouter;
 const {getAllFromDatabase, getFromDatabaseById} = __webpack_require__(/*! ../data/db */ "./data/db.js");
 
 const express = __webpack_require__(/*! express */ "./node_modules/express/index.js");
-const ideasRouter = express.Router({mergeParams: true});
+const router = express.Router();
 
-ideasRouter.get('/', (req, res, next) => {
+router.get('/', (req, res, next) => {
     const allIdeas = getAllFromDatabase('ideas');
     if (allIdeas) {
         res.send(allIdeas);
@@ -173534,7 +173534,7 @@ ideasRouter.get('/', (req, res, next) => {
     }
 });
 
-ideasRouter.get('/:ideaId', (req, res, next) => {
+router.get('/:ideaId', (req, res, next) => {
     const ideaId = req.params.ideaId;
     const idea = getFromDatabaseById('ideas', ideaId);
     if (idea) {
@@ -173543,6 +173543,9 @@ ideasRouter.get('/:ideaId', (req, res, next) => {
         res.status(404).send(`Idea with id ${ideaId} not found`);
     }
 });
+
+const ideasRouter = express.Router();
+ideasRouter.use(router);
 
 module.exports = ideasRouter;
 
@@ -173555,10 +173558,10 @@ module.exports = ideasRouter;
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 const express = __webpack_require__(/*! express */ "./node_modules/express/index.js");
-const {getAllFromDatabase} = __webpack_require__(/*! ../data/db */ "./data/db.js");
-const meetingsRouter = express.Router({mergeParams:true});
+const {createMeeting, getAllFromDatabase, addToDatabase} = __webpack_require__(/*! ../data/db */ "./data/db.js");
+const router = express.Router();
 
-meetingsRouter.get('/', (req, res, next) => {
+router.get('/', (req, res, next) => {
     const allMeetings = getAllFromDatabase('meetings');
     if (allMeetings) {
         console.log('Sending meetings');
@@ -173567,6 +173570,19 @@ meetingsRouter.get('/', (req, res, next) => {
         res.status(404).send('No meetings found');
     }
 });
+
+router.post('/', (req, res, next) => {
+    const newMeeting = createMeeting();
+    const addedMeeting = addToDatabase('meetings', newMeeting);
+    if (addedMeeting) {
+        res.status(201).send(addedMeeting);
+    } else {
+        res.status(400).send('Invalid meeting');
+    }
+});
+
+const meetingsRouter = express.Router();
+meetingsRouter.use(router);
 
 module.exports = meetingsRouter;
 
@@ -173581,9 +173597,9 @@ module.exports = meetingsRouter;
 const {getAllFromDatabase, getFromDatabaseById} = __webpack_require__(/*! ../data/db */ "./data/db.js");
 
 const express = __webpack_require__(/*! express */ "./node_modules/express/index.js");
-const minionsRouter = express.Router({mergeParams:true});
+const router = express.Router();
 
-minionsRouter.get('/', (req, res, next) => {
+router.get('/', (req, res, next) => {
     const allMinions = getAllFromDatabase('minions');
     if (allMinions) {
         res.send(allMinions);
@@ -173592,7 +173608,7 @@ minionsRouter.get('/', (req, res, next) => {
     }
 });
 
-minionsRouter.get('/:minionId', (req, res, next) => {
+router.get('/:minionId', (req, res, next) => {
     const minionId = req.params.minionId;
     const minion = getFromDatabaseById('minions', minionId);
     if (minion) {
@@ -173601,6 +173617,9 @@ minionsRouter.get('/:minionId', (req, res, next) => {
         res.status(404).send(`Minion with id ${minionId} not found`);
     }
 });
+
+const minionsRouter = express.Router();
+minionsRouter.use(router);
 
 module.exports = minionsRouter;
 

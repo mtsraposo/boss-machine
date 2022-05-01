@@ -1,8 +1,8 @@
 const express = require('express');
-const {getAllFromDatabase} = require("../data/db");
-const meetingsRouter = express.Router({mergeParams:true});
+const {createMeeting, getAllFromDatabase, addToDatabase} = require("../data/db");
+const router = express.Router();
 
-meetingsRouter.get('/', (req, res, next) => {
+router.get('/', (req, res, next) => {
     const allMeetings = getAllFromDatabase('meetings');
     if (allMeetings) {
         console.log('Sending meetings');
@@ -11,5 +11,18 @@ meetingsRouter.get('/', (req, res, next) => {
         res.status(404).send('No meetings found');
     }
 });
+
+router.post('/', (req, res, next) => {
+    const newMeeting = createMeeting();
+    const addedMeeting = addToDatabase('meetings', newMeeting);
+    if (addedMeeting) {
+        res.status(201).send(addedMeeting);
+    } else {
+        res.status(400).send('Invalid meeting');
+    }
+});
+
+const meetingsRouter = express.Router();
+meetingsRouter.use(router);
 
 module.exports = meetingsRouter;
