@@ -194,7 +194,7 @@ const findDataArrayByName = (name) => {
 
 const getAllFromDatabase = (modelType) => {
   const model = findDataArrayByName(modelType);
-  if (model === null) {
+  if (!model) {
     return null;
   }
   return model.data;
@@ -202,7 +202,7 @@ const getAllFromDatabase = (modelType) => {
 
 const getFromDatabaseById = (modelType, id) => {
   const model = findDataArrayByName(modelType);
-  if (model === null) {
+  if (!model) {
     return null;
   }
   return model.data.find((element) => {
@@ -212,7 +212,7 @@ const getFromDatabaseById = (modelType, id) => {
 
 const addToDatabase = (modelType, instance) => {
   const model = findDataArrayByName(modelType);
-  if (model === null) {
+  if (!model) {
     return null;
   }
   if (model.isValid(instance)) {
@@ -224,7 +224,7 @@ const addToDatabase = (modelType, instance) => {
 
 const updateInstanceInDatabase = (modelType, instance) => {
   const model = findDataArrayByName(modelType);
-  if (model === null) {
+  if (!model) {
     return null;
   }
   const instanceIndex = model.data.findIndex((element) => {
@@ -238,9 +238,9 @@ const updateInstanceInDatabase = (modelType, instance) => {
   }
 }
 
-const deleteFromDatabasebyId = (modelType, id) => {
+const deleteFromDatabaseById = (modelType, id) => {
   const model = findDataArrayByName(modelType);
-  if (model === null) {
+  if (!model) {
     return null;
   }
   let index = model.data.findIndex((element) => {
@@ -256,7 +256,7 @@ const deleteFromDatabasebyId = (modelType, id) => {
 
 const deleteAllFromDatabase = (modelType) => {
   const model = findDataArrayByName(modelType);
-  if (model === null) {
+  if (!model) {
     return null;
   }
   model.data = [];
@@ -269,6 +269,6 @@ module.exports = {
   getFromDatabaseById,
   addToDatabase,
   updateInstanceInDatabase,
-  deleteFromDatabasebyId,
+  deleteFromDatabaseById,
   deleteAllFromDatabase,
 };

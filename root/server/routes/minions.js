@@ -1,10 +1,9 @@
-const {getAllFromDatabase, getFromDatabaseById, deleteFromDatabasebyId} = require("../data/db");
+const {getAllFromDatabase, getFromDatabaseById, deleteFromDatabaseById} = require("../data/db");
 
 const express = require('express');
 const minionsRouter = express.Router();
 
-minionsRouter.get('/', (req, res, next) => {
-    console.log('Getting all minions...');
+minionsRouter.get('/', (req, res) => {
     const allMinions = getAllFromDatabase('minions');
     if (allMinions) {
         res.send(allMinions);
@@ -13,7 +12,7 @@ minionsRouter.get('/', (req, res, next) => {
     }
 });
 
-minionsRouter.get('/:id', (req, res, next) => {
+minionsRouter.get('/:id', (req, res) => {
     const minionId = Number(req.params.id);
     const minion = getFromDatabaseById('minions', minionId);
     if (minion) {
@@ -23,10 +22,9 @@ minionsRouter.get('/:id', (req, res, next) => {
     }
 });
 
-minionsRouter.delete('/:id', (req, res, next) => {
-    const minionId = Number(req.params.id);
-    const deletedId = deleteFromDatabasebyId('minions', minionId);
-    console.log('Deleting...');
+minionsRouter.delete('/:id', (req, res) => {
+    const minionId = req.params.id;
+    const deletedId = deleteFromDatabaseById('minions', minionId);
     if (deletedId) {
         res.status(200).send(deletedId);
     } else {
