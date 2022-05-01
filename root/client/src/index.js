@@ -90,7 +90,7 @@ root.render(
             <Routes>
                 <Route path="/" element={<App/>}>
                     <Route index element={<Home/>}/>
-                    {/*<Route path="/minions" element={<AllMinions/>}/>*/}
+                    <Route path="/minions" element={<AllMinions/>}/>
                     {/*<Route path="/minions/new" onEnter={newMinionEnter} element={<Minion/>}/>*/}
                     {/*<Route path="/minions/:id" onEnter={singleMinionEnter} element={<Minion/>}/>*/}
                     {/*<Route path="/ideas" onEnter={allIdeasEnter} element={<AllIdeas/>}/>*/}

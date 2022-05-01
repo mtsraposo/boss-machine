@@ -1,9 +1,9 @@
 const {getAllFromDatabase, getFromDatabaseById} = require("../data/db");
 
 const express = require('express');
-const router = express.Router();
+const ideasRouter = express.Router();
 
-router.get('/', (req, res, next) => {
+ideasRouter.get('/', (req, res, next) => {
     const allIdeas = getAllFromDatabase('ideas');
     if (allIdeas) {
         res.send(allIdeas);
@@ -12,8 +12,8 @@ router.get('/', (req, res, next) => {
     }
 });
 
-router.get('/:ideaId', (req, res, next) => {
-    const ideaId = req.params.ideaId;
+ideasRouter.get('/:ideaId', (req, res, next) => {
+    const ideaId = req.query.ideaId;
     const idea = getFromDatabaseById('ideas', ideaId);
     if (idea) {
         res.send(idea);
@@ -21,8 +21,5 @@ router.get('/:ideaId', (req, res, next) => {
         res.status(404).send(`Idea with id ${ideaId} not found`);
     }
 });
-
-const ideasRouter = express.Router();
-ideasRouter.use(router);
 
 module.exports = ideasRouter;

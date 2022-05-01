@@ -29,17 +29,15 @@ export const updateMinionThunk = minion => dispatch => {
         .catch(console.error.bind(console));
 }
 
-export const deleteMinionThunk = minionId => dispatch => {
-    axios.delete(`http://localhost:4001/api/minions/${minionId}`)
-        .then(res => res.data)
-        .then(() => {
-            return axios.get(`http://localhost:4001/api/minions`)
-        })
-        .then(res => res.data)
-        .then(allMinions => {
-            dispatch(setMinions(allMinions));
-        })
-        .catch(console.error.bind(console));
+export const deleteMinionThunk = minionId => async dispatch => {
+    try{
+        const responseDeleted = await axios.delete(`http://localhost:4001/api/minions/${minionId}`);
+        const responseAll = await axios.get(`http://localhost:4001/api/minions`);
+        const allMinions = responseAll.data;
+        dispatch(setMinions(allMinions));
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 // Reducer
@@ -51,17 +49,17 @@ const minionSlice = createSlice({
         initialState,
         reducers: {
             setMinions: (state, action) => {
-                state = action.payload;
+                return action.payload;
             },
             createMinion: (state, action) => {
-                state.push(action.payload);
+                return [...state, action.payload];
             },
             updateMinion: (state, action) => {
                 const index = state.findIndex(el => el.id === action.payload.id);
                 if (index === -1) {
-                    state = initialState;
+                    return state;
                 }
-                state[index] = action.payload;
+                return [...state.slice(0, index), action.payload, ...state.slice(index+1)];
             },
         }
     }

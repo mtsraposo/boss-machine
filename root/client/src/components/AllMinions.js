@@ -4,18 +4,23 @@ import {connect} from 'react-redux';
 
 import {deleteMinionThunk} from '../store/minions';
 
+import minionImg from "../assets/minion.svg";
+import deleteMinionImg from "../assets/x_button.svg";
+import arrow from "../assets/arrow.svg";
+import addButtonImg from "../assets/add_button.svg";
+
 const AllMinions = props => {
     const minions = props.minions.map(minion => {
         let name = minion.name.match(/.{1,11}/g).join('\n');
         return (
             <div className="minion-grid" key={minion.id}>
                 <Link to={`/minions/${minion.id}`}>
-                    <img className="button minion-thumbnail" src="../assets/minion.svg" alt="minion"/>
+                    <img className="button minion-thumbnail" src={minionImg} alt="minion"/>
                     <p>{name}</p>
                     <p>ID #{minion.id}</p>
                 </Link>
                 <img onClick={() => props.deleteMinion(minion.id)} className="button x-button"
-                     src="../assets/img/x_button.svg" alt=""/>
+                     src={deleteMinionImg} alt=""/>
             </div>
         )
     });
@@ -28,7 +33,7 @@ const AllMinions = props => {
                     {minions}
                     <div id="add-minion-button-grid" className="minion-grid">
                         <Link to="/minions/new">
-                            <img id="add-minion-button" className="button" src="../assets/img/add_button.svg"
+                            <img id="add-minion-button" className="button" src={addButtonImg}
                                  alt=""/>
                         </Link>
                     </div>
@@ -36,15 +41,15 @@ const AllMinions = props => {
             </div>
             <div className="button back-button">
                 <Link to="/">
-                    <img className="button" src="../assets/img/arrow.svg"/>
+                    <img className="button" src={arrow} alt=""/>
                 </Link>
             </div>
         </div>
     )
 }
 
-const mapState = ({minions}) => ({
-    minions
+const mapState = (storeReducer) => ({
+    minions: storeReducer.minions
 });
 
 const mapDispatch = dispatch => ({

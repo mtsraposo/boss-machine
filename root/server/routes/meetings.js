@@ -1,8 +1,9 @@
-const express = require('express');
 const {createMeeting, getAllFromDatabase, addToDatabase} = require("../data/db");
-const router = express.Router();
 
-router.get('/', (req, res, next) => {
+const express = require('express');
+const meetingsRouter = express.Router();
+
+meetingsRouter.get('/', (req, res, next) => {
     const allMeetings = getAllFromDatabase('meetings');
     if (allMeetings) {
         console.log('Sending meetings');
@@ -12,7 +13,7 @@ router.get('/', (req, res, next) => {
     }
 });
 
-router.post('/', (req, res, next) => {
+meetingsRouter.post('/', (req, res, next) => {
     const newMeeting = createMeeting();
     const addedMeeting = addToDatabase('meetings', newMeeting);
     if (addedMeeting) {
@@ -21,8 +22,5 @@ router.post('/', (req, res, next) => {
         res.status(400).send('Invalid meeting');
     }
 });
-
-const meetingsRouter = express.Router();
-meetingsRouter.use(router);
 
 module.exports = meetingsRouter;

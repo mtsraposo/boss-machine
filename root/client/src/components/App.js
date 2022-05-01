@@ -13,24 +13,19 @@ export const App = () => {
 
     useEffect(()=> {
         const fetchApiData = async () => {
-            console.log('Mounted app');
             const minionsResponse = await axios.get('http://localhost:4001/api/minions');
             const ideasResponse = await axios.get('http://localhost:4001/api/ideas');
             const meetingsResponse = await axios.get('http://localhost:4001/api/meetings');
 
-            console.log('Fetched data...');
             const [minions, ideas, meetings] = [minionsResponse.data, ideasResponse.data, meetingsResponse.data];
 
-            console.log('Dispatching...');
             store.dispatch(setMinions(minions));
             store.dispatch(setIdeas(ideas));
             store.dispatch(setMeetings(meetings));
-            console.log('Done dispatching...');
 
             return true;
         }
-        const fetched = fetchApiData();
-        console.log(fetched);
+        const apiData = fetchApiData();
     });
 
     return (

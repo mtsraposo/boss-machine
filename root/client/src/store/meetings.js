@@ -24,7 +24,7 @@ export const cancelMeetingsThunk = () => dispatch => {
 const initialState = {
     meetings: [],
     timeoutId: null,
-    timeoutTime: 5000,
+    timeoutTime: 60000,
 };
 
 const meetingsSlice = createSlice({
