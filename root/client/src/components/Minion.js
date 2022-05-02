@@ -1,101 +1,94 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
-import { updateMinionThunk, createMinionThunk } from '../store/minions';
+import {updateMinionThunk, createMinionThunk} from '../store/minions';
 
 import Work from './Work';
 import MinionDescription from './MinionDescription';
 import MinionEdit from './MinionEdit';
 
-class Minion extends Component {
+import arrow from "../assets/arrow.svg";
 
-  constructor(props) {
-    super(props);
-    let editing = props.newMinion ? true : false;
-    this.state = {
-      editing: editing,
-      minion: props.minion,
+const Minion = (props) => {
+
+    useEffect(() => {
+        // props.singleMinionEnter();
+    }, []);
+
+    // componentWillReceiveProps(newProps) {
+    //   this.setState({
+    //     minion: newProps.minion
+    //   });
+    // }
+
+    const handleChange = e => {
+        // this.setState({
+        //     minion: Object.assign(this.state.minion, {
+        //         [e.target.name]: e.target.value,
+        //     }),
+        // });
     }
-  }
 
-  componentWillReceiveProps(newProps) {
-    this.setState({
-      minion: newProps.minion
-    });
-  }
+    const toggleEdit = (e) => {
+        if (props.editing) {
+            if (props.newMinion) {
+                props.createMinion(props.minion);
+            } else {
+                props.updateMinion(props.minion);
+            }
+        }
 
-  handleChange = e => {
-    this.setState({
-      minion: Object.assign(this.state.minion, {
-        [e.target.name]: e.target.value,
-      }),
-    });
-  }
-
-  toggleEdit = e => {
-    if (this.state.editing) {
-      if (this.props.newMinion) {
-        this.props.createMinion(this.state.minion);
-      } else {
-        this.props.updateMinion(this.state.minion);
-      }
+        // this.setState({
+        //     editing: !this.state.editing
+        // });
     }
-    
-    this.setState({
-      editing: !this.state.editing
-    });
-  }
 
-  render() {
+    const newMinion = props.newMinion ? `New Minion` : `Minion Id #${props.minion.id}`;
+    const description = props.editing
+        ? <MinionEdit handleChange={handleChange} {...props.minion} />
+        : <MinionDescription {...props.minion}/>;
+    const buttonText = props.editing ? 'Save' : 'Edit';
+
     return (
-      <div>
-        <div id="single-minion-landing">
-          <div className="minion-details">
-            <div className="label meetings-label">
-              { 
-                this.props.newMinion
-                ? `New Minion`
-                : `Minion Id #${this.state.minion.id}`
-              }
+        <div>
+            <div id="single-minion-landing">
+                <div className="minion-details">
+                    <div className="label meetings-label">
+                        {newMinion}
+                    </div>
+                    <div className="minion-description">
+                        {description}
+                    </div>
+                    <div className="button minion-save-button" onClick={toggleEdit}>
+                        {buttonText}
+                    </div>
+                </div>
+                <div className="work-details">
+                    {/*<Work/>*/}
+                </div>
             </div>
-            <div className="minion-description">
-              { 
-                this.state.editing
-                ? <MinionEdit handleChange={this.handleChange} {...this.props.minion} />
-                : <MinionDescription {...this.props.minion}/>
-              }
+            <div className="button back-button">
+                <Link to="/minions">
+                    <img className="button" src={arrow} alt=""/>
+                </Link>
             </div>
-            <div className="button minion-save-button" onClick={this.toggleEdit}>
-              { this.state.editing ? 'Save' : 'Edit' }
-            </div>
-          </div>
-          <div className="work-details">
-            <Work />
-          </div>
         </div>
-        <div className="button back-button">
-          <Link to="/minions">
-            <img className="button" src="public/img/arrow.svg" />
-          </Link>
-        </div>
-      </div>
-    )
-  }
+    );
 }
 
-const mapState = ({selectedMinion, appState}) => ({
-  minion: selectedMinion,
-  newMinion: appState.editingNewMinion,
+const mapState = (storeReducer) => ({
+    minion: storeReducer.selectedMinion,
+    newMinion: storeReducer.app.editingNewMinion,
 });
 
 const mapDispatch = dispatch => ({
-  updateMinion: minion => {
-    dispatch(updateMinionThunk(minion));
-  },
-  createMinion: minion => {
-    dispatch(createMinionThunk(minion));
-  },
+    updateMinion: minion => {
+        dispatch(updateMinionThunk(minion));
+    },
+    createMinion: minion => {
+        dispatch(createMinionThunk(minion));
+    },
 });
 
 export default connect(mapState, mapDispatch)(Minion);

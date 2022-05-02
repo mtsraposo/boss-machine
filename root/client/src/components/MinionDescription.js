@@ -1,12 +1,12 @@
 import React from 'react';
 
-const MinionDescription = ({name, title, salary, weaknesses}) => {
+const MinionDescription = (props) => {
   return (
     <div>
-      <p>Name: {name}</p>
-      <p>Title: {title}</p>
-      <p>Salary: {salary}</p>
-      <p>Weaknesses: {weaknesses}</p>
+      <p>Name: {props.name}</p>
+      <p>Title: {props.title}</p>
+      <p>Salary: {props.salary}</p>
+      <p>Weaknesses: {props.weaknesses}</p>
     </div>
   )
 }

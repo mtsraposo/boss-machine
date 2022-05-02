@@ -45,7 +45,7 @@ const AllMinions = props => {
                 </Link>
             </div>
         </div>
-    )
+    );
 }
 
 const mapState = (storeReducer) => ({

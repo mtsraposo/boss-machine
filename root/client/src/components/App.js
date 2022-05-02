@@ -5,11 +5,22 @@ import axios from "axios";
 import {store} from "../store";
 
 import {Heading} from './Heading';
-import {setMinions} from "../store/minions";
+import {createMinionThunk, setMinions, updateMinionThunk} from "../store/minions";
 import {setIdeas} from "../store/ideas";
 import {setMeetings} from "../store/meetings";
+import {connect} from "react-redux";
+import {
+    allIdeasEnter,
+    newIdeaEnter,
+    newMinionEnter,
+    resetEditingState,
+    singleIdeaEnterThunk,
+    singleMinionEnterThunk
+} from "../store/appState";
+import {setSelectedMinion} from "../store/selectedMinion";
+import {setWork} from "../store/work";
 
-export const App = () => {
+const App = () => {
 
     useEffect(()=> {
         const fetchApiData = async () => {
@@ -37,3 +48,27 @@ export const App = () => {
         </div>
     );
 }
+
+const mapState = storeReducer => {
+    return storeReducer.app;
+}
+
+const mapDispatch = dispatch => ({
+    singleMinionEnter: (id) => {
+        dispatch(singleMinionEnterThunk(id));
+    },
+    singleIdeaEnter: (id) => {
+        dispatch(singleIdeaEnterThunk(id));
+    },
+    newIdeaEnter: () => {
+        dispatch(newIdeaEnter());
+    },
+    newMinionEnter: () => {
+        dispatch(newMinionEnter());
+    },
+    allIdeasEnter: () => {
+        dispatch(allIdeasEnter());
+    }
+});
+
+export default connect(mapState, mapDispatch)(App);
