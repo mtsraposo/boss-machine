@@ -65,7 +65,7 @@ const Minion = (props) => {
                     </div>
                 </div>
                 <div className="work-details">
-                    {/*<Work/>*/}
+                    <Work/>
                 </div>
             </div>
             <div className="button back-button">

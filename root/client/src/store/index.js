@@ -16,7 +16,7 @@ export const store = configureStore({
             // ideas: ideasReducer,
             selectedMinion: selectedMinionReducer,
             // selectedIdea: selectedIdeaReducer,
-            // work: workReducer,
+            work: workReducer,
         }
     }
 );
