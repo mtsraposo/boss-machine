@@ -83,7 +83,7 @@ const appSlice = createSlice({
         setWorkEditing: (state, action) => {
             return {
                 ...state,
-                editingNewWork: true,
+                editingNewWork: action.payload,
             };
         },
         resetEditingState: (state, action) => {

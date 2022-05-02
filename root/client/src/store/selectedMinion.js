@@ -1,28 +1,26 @@
-const CLEAR_SELECTED_IDEA = 'CLEAR_SELECTED_IDEA';
-const SET_MINION = 'SET_MINION';
+import {createSlice} from "@reduxjs/toolkit";
 
-export const setSelectedMinion = minion => {
-  return {
-    type: SET_MINION,
-    minion
-  }
+const initialState = {
+    id: '',
+    name: '',
+    age: '',
+    salary: '',
+    weaknesses: '',
 }
 
-const initial = {
-  id: '',
-  name: '',
-  age: '',
-  salary: '',
-  weaknesses: '',
-}
+const selectedMinionSlice = createSlice({
+    name: 'selectedMinion',
+    initialState,
+    reducers: {
+        clearSelectedIdea: (state, action) => {
+            return {};
+        },
+        setSelectedMinion: (state, action) => {
+            return action.payload;
+        }
+    }
+});
 
-export default (initialState = initial, action) => {
-  switch(action.type) {
-    case CLEAR_SELECTED_IDEA:
-      return {};
-    case SET_MINION:
-      return action.minion;
-    default:
-      return initialState;
-  }
-}
+export const {clearSelectedIdea, setSelectedMinion} = selectedMinionSlice.actions;
+
+export default selectedMinionSlice.reducer;

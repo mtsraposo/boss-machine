@@ -1,39 +1,6 @@
+import {createSlice} from "@reduxjs/toolkit";
+
 import axios from 'axios';
-
-const SET_WORK = 'SET_WORK';
-const CREATE_WORK = 'CREATE_WORK';
-const UPDATE_WORK = 'UPDATE_WORK';
-const DELETE_WORK = 'DELETE_WORK';
-
-// Actions
-
-export const setWork = allWork => {
-  return {
-    type: SET_WORK,
-    allWork,
-  }
-}
-
-export const addWork = work => {
-  return {
-    type: CREATE_WORK,
-    work,
-  }
-}
-
-export const updateWork = work => {
-  return {
-    type: UPDATE_WORK,
-    work,
-  }
-}
-
-export const deleteWork = workId => {
-  return {
-    type: DELETE_WORK,
-    workId,
-  }
-}
 
 // Thunks
 
@@ -65,27 +32,35 @@ export const deleteWorkThunk = work => dispatch => {
 
 // Reducer
 
-export const initial = [];
+const initialState = [];
 
-export default (initialState = initial, action) => {
-  switch(action.type) {
-    case CREATE_WORK:
-      return [...initialState, action.work];
-    case SET_WORK:
-      return action.allWork;
-    case UPDATE_WORK:
-      const index = initialState.findIndex(el => el.id === action.work.id);
-      if (index === -1) {
-        return initialState;
-      }
-      return [...initialState.slice(0, index), action.work, ...initialState.slice(index + 1)];
-    case DELETE_WORK:
-      const deleteIndex = initialState.findIndex(el => el.id === action.workId);
-      if (deleteIndex === -1) {
-        return initialState;
-      }
-      return [...initialState.slice(0, deleteIndex), ...initialState.slice(deleteIndex + 1)];
-    default:
-      return initialState;
-  }
-}
+const workSlice = createSlice({
+    name: "work",
+    initialState,
+    reducers: {
+        addWork: (state, action)  => {
+            return [...initialState, action.payload];
+        },
+        setWork: (state, action) => {
+            return action.payload;
+        },
+        updateWork: (state, action) => {
+            const index = initialState.findIndex(el => el.id === action.payload.id);
+            if (index === -1) {
+                return initialState;
+            }
+            return [...initialState.slice(0, index), action.payload, ...initialState.slice(index + 1)];
+        },
+        deleteWork: (state, action) => {
+            const deleteIndex = initialState.findIndex(el => el.id === action.payload);
+            if (deleteIndex === -1) {
+                return initialState;
+            }
+            return [...initialState.slice(0, deleteIndex), ...initialState.slice(deleteIndex + 1)];
+        }
+    }
+});
+
+export const {addWork, setWork, updateWork, deleteWork} = workSlice.actions;
+
+export default workSlice.reducer;

@@ -4,23 +4,17 @@ import {connect} from 'react-redux';
 import SingleWorkRow from './SingleWorkRow';
 
 import {updateWorkThunk, createWorkThunk} from '../store/work';
+import {setWorkEditing} from "../store/appState";
 
 const Work = (props) => {
-    // this.state = {
-    //   editingNewWork: false,
-    // }
 
     const toggleEdit = () => {
-        // this.setState({
-        //   editingNewWork: !this.state.editingNewWork,
-        // });
+        props.setWorkEditing(!props.editingNewWork);
     }
 
     const saveNewWork = work => {
         props.createWork(work);
-        // this.setState({
-        //   editingNewWork: false,
-        // })
+        props.setWorkEditing(false);
     }
 
     const defaultWork = {
@@ -29,6 +23,7 @@ const Work = (props) => {
         hours: 0,
         minionId: props.selectedMinion.id,
     }
+
     const workRows = props.work.map((work, idx) => {
         return (
             <SingleWorkRow updateWork={props.updateWork} work={work} key={work.id} idx={idx}/>
@@ -83,6 +78,9 @@ const mapDispatch = dispatch => ({
     },
     createWork: work => {
         dispatch(createWorkThunk(work));
+    },
+    setWorkEditing: editing => {
+        dispatch(setWorkEditing(editing));
     }
 })
 
