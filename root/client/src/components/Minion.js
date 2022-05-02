@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 
 import {updateMinionThunk, createMinionThunk} from '../store/minions';
 
@@ -9,18 +9,22 @@ import MinionDescription from './MinionDescription';
 import MinionEdit from './MinionEdit';
 
 import arrow from "../assets/arrow.svg";
+import {singleMinionEnterThunk} from "../store/appState";
+import {setSelectedMinion} from "../store/selectedMinion";
 
 const Minion = (props) => {
 
+    let { id } = useParams();
+
     useEffect(() => {
-        // props.singleMinionEnter();
+        if (!props.newMinion) {
+            props.singleMinionEnter(id);
+        }
     }, []);
 
-    // componentWillReceiveProps(newProps) {
-    //   this.setState({
-    //     minion: newProps.minion
-    //   });
-    // }
+    useEffect(()=>{
+        props.setSelectedMinion(props.minion);
+    }, [props.minion]);
 
     const handleChange = e => {
         // this.setState({
@@ -89,6 +93,12 @@ const mapDispatch = dispatch => ({
     createMinion: minion => {
         dispatch(createMinionThunk(minion));
     },
+    singleMinionEnter: (id) => {
+        dispatch(singleMinionEnterThunk(id));
+    },
+    setSelectedMinion: (minion) => {
+        dispatch(setSelectedMinion(minion));
+    }
 });
 
 export default connect(mapState, mapDispatch)(Minion);

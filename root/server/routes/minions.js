@@ -1,4 +1,4 @@
-const {getAllFromDatabase, getFromDatabaseById, deleteFromDatabaseById} = require("../data/db");
+const {getAllFromDatabase, getFromDatabaseById, getMinionWork, deleteFromDatabaseById} = require("../data/db");
 
 const express = require('express');
 const minionsRouter = express.Router();
@@ -29,6 +29,16 @@ minionsRouter.delete('/:id', (req, res) => {
         res.status(200).send(deletedId);
     } else {
         res.status(404).send('Minion not found');
+    }
+});
+
+minionsRouter.get('/:id/work', (req, res, next) => {
+    const minionId = req.params.id;
+    const minionWork = getMinionWork(minionId);
+    if (minionWork) {
+        res.status(200).send(minionWork);
+    } else {
+        res.status(404).send('Minion work not found');
     }
 });
 

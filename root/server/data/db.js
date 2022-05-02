@@ -210,6 +210,14 @@ const getFromDatabaseById = (modelType, id) => {
   });
 }
 
+const getMinionWork = (minionId) => {
+    const model = findDataArrayByName('work');
+    if (!model) {
+        throw new Error('Could not find work database');
+    }
+    return model.data.filter((work) => work.minionId === minionId);
+}
+
 const addToDatabase = (modelType, instance) => {
   const model = findDataArrayByName(modelType);
   if (!model) {
@@ -267,6 +275,7 @@ module.exports = {
   createMeeting,
   getAllFromDatabase,
   getFromDatabaseById,
+    getMinionWork,
   addToDatabase,
   updateInstanceInDatabase,
   deleteFromDatabaseById,
