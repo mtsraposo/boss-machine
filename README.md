@@ -6,6 +6,7 @@
 - [ ] Update all components to the latest version of React
 - [ ] Update all components to the latest version of Redux
 - [ ] Remaining routes
+- [ ] Update tests
 
 ## Project Overview
 
